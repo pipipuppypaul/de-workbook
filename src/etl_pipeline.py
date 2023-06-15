@@ -30,6 +30,8 @@ class ETLPipeLine:
         self.df = self.df.sort_values(by=['datetime']) #used for future fast fetch
 
     def write_data(self):
+        if not os.path.exists(self.output_file):
+            os.makedirs(self.output_file)
         self.df.to_parquet(self.output_file, index=False, partition_cols=['transaction_type'])
         logging.info('Data written to: {}'.format(self.output_file))
 
