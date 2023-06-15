@@ -1,11 +1,13 @@
 default_data_path = '/Users/yuhaibo/workspace/kasheesh-de-workbook/database/'
+# make it dynamic
+# database should not be in repo
 
 transaction_type_list = [
     "PurchaseActivity",
     "ReturnActivity",
 ]
 
-data_column_mapping = {
+server_data_column_mapping = {
     "transaction": {
         "input_col": ["user_id", "transaction_type", "merchant_type_code", "amount_cents", "datetime"],
         "input_type": ["int", "string", "int", "int", "datetime"],
@@ -18,4 +20,9 @@ data_column_mapping = {
         "output_col": ["merchant_type_code", "net_amount_in_dollars", "date"],
         "output_type": ["int", "int", "date"]
     }
+}
+
+db_data_column_mapping = {
+    "columns": ["user_id", "transaction_type", "merchant_type_code", "amount_cents", "datetime"],
+    "types": ["int", "string", "int", "int", "datetime64[ns]"]
 }
