@@ -20,6 +20,7 @@ class ETLPipeLine:
         # file: /Users/yuhaibo/Downloads/combined_transactions.csv
         self.df = pd.read_csv(self.input_file, parse_dates=['datetime'])
         logging.info('Data read from: {}'.format(self.input_file))
+        return
 
     def transform_data(self):
         assert len(db_data_column_mapping['columns']) == len(db_data_column_mapping['types'])
@@ -28,12 +29,14 @@ class ETLPipeLine:
             tp = db_data_column_mapping['types'][i]
             self.df[col] = self.df[col].astype(tp)
         self.df = self.df.sort_values(by=['datetime']) #used for future fast fetch
+        return
 
     def write_data(self):
         if not os.path.exists(self.output_file):
             os.makedirs(self.output_file)
         self.df.to_parquet(self.output_file, index=False, partition_cols=['transaction_type'])
         logging.info('Data written to: {}'.format(self.output_file))
+        return 
 
 
 

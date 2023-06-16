@@ -1,6 +1,4 @@
-default_data_path = '/Users/yuhaibo/workspace/kasheesh-de-workbook/database/'
-# make it dynamic
-# database should not be in repo
+default_data_path = './database/'
 
 transaction_type_list = [
     "PurchaseActivity",
